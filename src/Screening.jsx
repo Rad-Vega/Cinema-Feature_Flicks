@@ -19,6 +19,11 @@ export default function Screening(props) {
   const time = new Date(screeningTime).toLocaleTimeString('sv-SE', {
     timeStyle: 'short'
   });
+
+  const runTimeHours = Math.floor(length / 60);
+  const runTimeMinutes = length % 60;
+  const formattedRunTime = `${runTimeHours > 0 ? runTimeHours + 'h ' : ''}${runTimeMinutes}m`;
+
   // Add the correct domain to the image path
   posterImage = 'https://cinema-rest.nodehill.se/' + posterImage;
 
@@ -32,7 +37,7 @@ export default function Screening(props) {
       <ListGroup variant="flush">
         <ListGroup.Item>Categories: {categories.join(', ')}</ListGroup.Item>
         <ListGroup.Item>Auditorium: {auditoriumNames[auditoriumId]}</ListGroup.Item>
-        <ListGroup.Item>Runtime: {length} min</ListGroup.Item>
+        <ListGroup.Item>Runtime: {formattedRunTime}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
         <Button variant="primary">Learn More</Button> {/* This may or may not be used for booking later on*/}

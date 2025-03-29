@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Screening from './Screening';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router';
 
 export default function ScreeningList({ movies, screenings }) {
 
@@ -71,11 +72,15 @@ export default function ScreeningList({ movies, screenings }) {
                   }
                   return (
                     <div key={id}>
-                      <Screening
-                        screeningTime={time}
-                        auditoriumId={auditoriumId}
-                        movie={matchingMovie}
-                      />
+                      <Link to={'/booking/' + id}
+                        style={{ textDecoration: 'none', color: 'inherit', fontWeight: 'normal' }}
+                      >
+                        <Screening
+                          screeningTime={time}
+                          auditoriumId={auditoriumId}
+                          movie={matchingMovie}
+                        />
+                      </Link>
                     </div>
                   );
                 })}
