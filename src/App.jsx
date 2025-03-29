@@ -17,12 +17,17 @@ export default function App() {
     })();
   }, []);
 
+  const sortedScreenings = [...screenings].sort(
+    (a, b) => new Date(a.time) - new Date(b.time)
+  );
+
+
   return (
     <div className="App">
       <header>
         <h1>Feature Flicks Cinema</h1>
       </header>
-      {screenings.map(({ id, time, movieId, auditoriumId }) => {
+      {sortedScreenings.map(({ id, time, movieId, auditoriumId }) => {
         const matchingMovie = movies.find(movie => movie.id === movieId);
 
         if (!matchingMovie) {
