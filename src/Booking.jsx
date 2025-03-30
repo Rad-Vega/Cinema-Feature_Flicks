@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import Button from 'react-bootstrap/Button';
+import BookingConfirmation from './BookingConfirmation';
 import DisplayChairs from './DisplaySeats';
 
 // Counter for a ticket type
@@ -14,11 +16,9 @@ function TicketCounter({ label, count, incrementDisabled, onIncrement, onDecreme
   );
 }
 
-export default function Booking({ movies, screenings }) {
+export default function Booking() {
   const { screeningId } = useParams(); // Extract screening ID from booking route
   const [selectedSeats, setSelectedSeats] = useState([]); // State to manage selected seats
-
-  console.log(selectedSeats)
 
   // Ticket counters state
   const [ticketCounts, setTicketCounts] = useState({
@@ -40,6 +40,18 @@ export default function Booking({ movies, screenings }) {
   const handleDecrement = (type) => {
     setTicketCounts(prev => ({ ...prev, [type]: Math.max(prev[type] - 1, 0) }));
   };
+
+  // State for conditional display of BookingConfirmation
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  // Handler for booking button click
+  const handleBook = () => {
+    setShowConfirmation(true);
+  };
+
+  useEffect(() => {
+    setShowConfirmation(false); // Reset booking confirmation when state changes
+  }, [selectedSeats, ticketCounts]);
 
   return (
     <div>
@@ -72,7 +84,16 @@ export default function Booking({ movies, screenings }) {
             onIncrement={() => handleIncrement('child')}
             onDecrement={() => handleDecrement('child')}
           />
+          <Button variant="primary" disabled={totalTickets === 0 || totalTickets < selectedSeats.length} className="mt-5" size="lg" onClick={handleBook}>
+            Confirm Booking
+          </Button>
         </div>
+      )}
+      {showConfirmation && (
+        <BookingConfirmation
+          selectedSeats={selectedSeats}
+          ticketCounts={ticketCounts}
+        />
       )}
     </div>
   );
