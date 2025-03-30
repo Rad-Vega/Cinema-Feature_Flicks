@@ -7,6 +7,15 @@ A homepage for a cinema's online booking system built as a SPA using:
 
 and running on Vite.
 
+## Running the project
+
+To start the application, start a terminal of your choice & navigate to the root folder in which this project is located.
+Then run these commands
+```
+npm install
+npm run dev
+```
+
 ## Structure
 
 It utilizes several React components to function as an SPA, loading them in based on conditionals or which route the client is on.
