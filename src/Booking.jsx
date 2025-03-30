@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, Link } from 'react-router';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import BookingConfirmation from './BookingConfirmation';
@@ -58,6 +58,9 @@ export default function Booking() {
 
   return (
     <div>
+      <Link to="/" style={{ textDecoration: 'none', marginBottom: '1rem', display: 'block' }}>
+        ← Back to Homepage
+      </Link>
       <h2 className='booking-title'>Booking</h2>
       <DisplayChairs
         screeningId={screeningId}
