@@ -1,10 +1,10 @@
 // Example code presented in the course work, modified & re-used in this project
 // React component displaying auditorium seating
 
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useStates } from './utils/states';
 
-export default function DisplayChairs({ screeningId, onSeatSelection }) {
+export default function DisplayChairs({ screeningId, onSelectionChange }) {
 
   const s = useStates({
     screening: null,
@@ -80,7 +80,7 @@ export default function DisplayChairs({ screeningId, onSeatSelection }) {
   // output the seats
   return s.seats.length === 0 ? null : <div className="screening-and-seats">
     <h1>{s.screening.movie}</h1>
-    <h2>{new Date(s.screening.screeningTime).toLocaleDateString('en-SE', {
+    <h2>{new Date(s.screening.screeningTime).toLocaleString('en-SE', {
       dateStyle: 'full',
       timeStyle: 'short'
     })}</h2>
@@ -88,14 +88,14 @@ export default function DisplayChairs({ screeningId, onSeatSelection }) {
       className="poster-screen"
       src={'https://cinema-rest.nodehill.se' + s.movie.description.posterImage} />
     <div className="seats">
-      {s.seats.map(row => <><div className="row">
-        {row.map((seat) => <div className={
+      {s.seats.map(row => <Fragment key={row.length > 0 ? `row-${row[0].rowNumber}` : 'row-empty'}><div className="row">
+        {row.map((seat) => <div key={`seat-${seat.rowNumber}-${seat.seatNumber}`} className={
           (seat.selected ? 'selected' : '')
           + (seat.occupied ? ' occupied' : '')
         }
           onClick={() => toggleSeatSelection(seat)}>{seat.seatNumber}
         </div>)}
-      </div><br /></>)}
+      </div><br /></Fragment>)}
     </div>
   </div>;
 }

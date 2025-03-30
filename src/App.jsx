@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect } from 'react'
 import ScreeningList from './ScreeningList'
+import Booking from './Booking'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
 
@@ -27,7 +28,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ScreeningList movies={movies} screenings={screenings} />} />
-          <Route path="/booking/:screeningId" element={<h2>Booking</h2>} /> {/* booking component will be rendered here */}
+          <Route path="/booking/:screeningId" element={<Booking />} /> {/* booking component will be rendered here */}
         </Routes>
       </BrowserRouter>
     </div>

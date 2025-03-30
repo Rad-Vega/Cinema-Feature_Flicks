@@ -39,9 +39,6 @@ export default function Screening(props) {
         <ListGroup.Item>Auditorium: {auditoriumNames[auditoriumId]}</ListGroup.Item>
         <ListGroup.Item>Runtime: {formattedRunTime}</ListGroup.Item>
       </ListGroup>
-      <Card.Body>
-        <Button variant="primary">Learn More</Button> {/* This may or may not be used for booking later on*/}
-      </Card.Body>
     </Card>
   );
 }
