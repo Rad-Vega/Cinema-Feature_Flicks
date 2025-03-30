@@ -80,8 +80,8 @@ button {
 }
 
 .seats>.row>div {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   float: right;
   text-align: center;
   padding-top: 3px;
@@ -91,6 +91,7 @@ button {
   height: 30px;
   margin: 3px 1px;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .seats>.row>.selected {

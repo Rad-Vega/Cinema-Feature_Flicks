@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import ScreeningList from './ScreeningList'
 import Booking from './Booking'
 import { BrowserRouter, Route, Routes } from 'react-router'
+import { Container, Row, Col } from 'react-bootstrap'
 import './App.css'
 
 export default function App() {
@@ -21,17 +22,19 @@ export default function App() {
 
 
   return (
-    <div className="App">
-      <header>
-        <h1>Feature Flicks Cinema</h1>
-      </header>
-      <hr />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ScreeningList movies={movies} screenings={screenings} />} />
-          <Route path="/booking/:screeningId" element={<Booking />} /> {/* booking component will be rendered here */}
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Container fluid="md">
+      <div className="App">
+        <header>
+          <h1>Feature Flicks Cinema</h1>
+        </header>
+        <hr />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<ScreeningList movies={movies} screenings={screenings} />} />
+            <Route path="/booking/:screeningId" element={<Booking />} /> {/* booking component will be rendered here */}
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Container>
   );
 }

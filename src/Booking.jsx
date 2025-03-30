@@ -28,7 +28,9 @@ export default function Booking() {
     child: 0,
   });
 
+  // Tracks total number of tickets chosen
   const totalTickets = ticketCounts.adult + ticketCounts.senior + ticketCounts.child;
+  // Bool to disable incrementation in TicketCounter if total tickets is equal to selected seats
   const incrementDisabled = totalTickets >= selectedSeats.length;
 
   // Handlers to increment & decrement ticket counts
