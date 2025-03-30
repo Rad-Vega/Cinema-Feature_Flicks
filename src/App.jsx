@@ -25,6 +25,7 @@ export default function App() {
       <header>
         <h1>Feature Flicks Cinema</h1>
       </header>
+      <hr />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ScreeningList movies={movies} screenings={screenings} />} />

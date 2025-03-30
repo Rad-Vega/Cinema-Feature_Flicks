@@ -78,11 +78,11 @@ export default function DisplayChairs({ screeningId, onSelectionChange }) {
 
   // output the seats
   return s.seats.length === 0 ? null : <div className="screening-and-seats">
-    <h1>{s.screening.movie}</h1>
-    <h2>{new Date(s.screening.screeningTime).toLocaleString('en-SE', {
+    <h2>{s.screening.movie}</h2>
+    <h3>{new Date(s.screening.screeningTime).toLocaleString('en-SE', {
       dateStyle: 'full',
       timeStyle: 'short'
-    })}</h2>
+    })}</h3>
     <img
       className="poster-screen"
       src={'https://cinema-rest.nodehill.se' + s.movie.description.posterImage} />
