@@ -71,9 +71,8 @@ export default function DisplayChairs({ screeningId, onSelectionChange }) {
       selectedSeats = selectedSeats.concat(row.filter(seat => seat.selected));
     }
     // Calls callback prop to pass selected seats to parent component, updating state
-    if (onSelectionChange) {
-      onSelectionChange(selectedSeats);
-    }
+
+    onSelectionChange(selectedSeats);
 
   }
 
@@ -88,7 +87,10 @@ export default function DisplayChairs({ screeningId, onSelectionChange }) {
       className="poster-screen"
       src={'https://cinema-rest.nodehill.se' + s.movie.description.posterImage} />
     <div className="seats">
+      {/* Following creates a Fragment for each seat & provides it with a unique key based index & rowNumber */}
       {s.seats.map(row => <Fragment key={row.length > 0 ? `row-${row[0].rowNumber}` : 'row-empty'}><div className="row">
+        {/* Following provides unique key to each seat rendered by taking the difference of rowNumber & seatNumber. */}
+        { /* The reason this is required is due to how these numbers are being handled internally */}
         {row.map((seat) => <div key={`seat-${seat.rowNumber}-${seat.seatNumber}`} className={
           (seat.selected ? 'selected' : '')
           + (seat.occupied ? ' occupied' : '')
