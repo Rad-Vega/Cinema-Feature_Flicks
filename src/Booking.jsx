@@ -10,9 +10,9 @@ function TicketCounter({ label, count, incrementDisabled, onIncrement, onDecreme
   return (
     <div className="ticket-counter">
       <h5>{label}</h5>
-      <button onClick={onDecrement} disabled={count <= 0}>–</button>
+      <Button variant="primary" onClick={onDecrement} disabled={count <= 0}>–</Button>
       <span style={{ margin: '0 8px' }}>{count}</span>
-      <button onClick={onIncrement} disabled={incrementDisabled}>+</button>
+      <Button variant="primary" onClick={onIncrement} disabled={incrementDisabled}>+</Button>
     </div>
   );
 }
@@ -20,6 +20,7 @@ function TicketCounter({ label, count, incrementDisabled, onIncrement, onDecreme
 export default function Booking() {
   const { screeningId } = useParams(); // Extract screening ID from booking route
   const [selectedSeats, setSelectedSeats] = useState([]); // State to manage selected seats
+  const [booked, setBooked] = useState(false);
 
   // Ticket counters state
   const [ticketCounts, setTicketCounts] = useState({
@@ -49,10 +50,12 @@ export default function Booking() {
 
   // Handler for booking button click
   const handleBook = () => {
+    setBooked(true);
     setShowConfirmation(true);
   };
 
   useEffect(() => {
+    setBooked(false);
     setShowConfirmation(false); // Reset booking confirmation when state changes
   }, [selectedSeats, ticketCounts]);
 
@@ -94,7 +97,7 @@ export default function Booking() {
               onDecrement={() => handleDecrement('child')}
             />
           </Card>
-          <Button variant="primary" disabled={totalTickets === 0 || totalTickets < selectedSeats.length} className="mb-2" size="lg" onClick={handleBook}>
+          <Button variant={booked ? "success" : "primary"} disabled={totalTickets === 0 || totalTickets < selectedSeats.length} className="mb-2" size="lg" onClick={handleBook}>
             Confirm Booking
           </Button>
         </div>

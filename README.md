@@ -26,4 +26,4 @@ In turn these components also render subcomponents. An example is `ScreeningList
 
 The booking system is rendered by the component `Booking` using the screening ID passed as a URL parameter based on which `Screening` the user chose. It allows the user to book available auditorium seats, choose which ticket types (Adult, Senior or Child) & confirm the order. Upon confirmation the user is presented with a receipt containing a unique booking number.
 
-The user may choose to change the booked seats, ticket types & numbers, changing the state & re-rendering the components so booking with the new details must be confirmed again. The user is also presente with a link at the top of the page to return to the home page if they wish to.
+The user may choose to change the booked seats, ticket types & numbers, changing the state & re-rendering the components so booking with the new details must be confirmed again. The user is also presented with a link at the top of the page to return to the home page if they wish to.

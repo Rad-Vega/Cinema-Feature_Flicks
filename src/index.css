@@ -113,3 +113,10 @@ button {
   border-radius: 10px;
   margin-bottom: 20px;
 }
+
+.ticket-counter button {
+  width: 30px;
+  height: 30px;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+}
